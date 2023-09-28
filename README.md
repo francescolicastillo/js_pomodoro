@@ -1,2 +1,2 @@
 # js_pomodoro
-Proyect Pomodoro in JS
+Project Pomodoro in JS
