@@ -50,9 +50,28 @@ main {
 button {
     border: 1px solid #aaa;
     border-radius: 0;
-    cursor: pointer;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
     padding: 6px 0;
 } 
+
+.pointer {
+    cursor: pointer;
+}
+
+.start {
+    background-color: rgb(112, 211, 112);
+}
+
+.start:hover {
+    background-color: rgb(15, 201, 15);
+}
+
+.edit {
+    background-color: rgb(38, 224, 248);
+}
+
+.edit:hover:enabled {
+    background-color: rgb(63, 176, 252);
+}

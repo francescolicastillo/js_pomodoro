@@ -59,10 +59,10 @@ const createNewTask = () => {
     arrayTasks.push(newTask);
     HTMLELementTasks.insertAdjacentHTML("afterBegin", 
                                         `<div id=${newTask.id}>
-                                            <button type="button" id="start-${newTask.id}" title="start">Start</button> 
+                                            <button type="button" id="start-${newTask.id}" class="start pointer" title="start">Start</button> 
                                             <span>${task.value}</span>
-                                            <button class="edit" type="button" id="edit-${newTask.id}" title="edit">edit</button>
-                                            <button class="delete" type="button" id="dele-${newTask.id}" title="delete">Dele</button>
+                                            <button type="button" id="edit-${newTask.id}" class="edit pointer" title="Edit">edit</button>
+                                            <button type="button" id="delete-${newTask.id}" class="delete pointer" title="Delete">Dele</button>
                                         </div>`);
     document.getElementById(`start-${newTask.id}`).addEventListener("click", startTask);
     document.getElementById(`edit-${newTask.id}`).addEventListener("click", editTaskStatus);
@@ -74,7 +74,8 @@ const startTask = (btnId) => {
     const task = arrayTasks.find(t => t.id == btnId.target.id.split("-")[1]);
     const btnTask = document.getElementById(`start-${task.id}`);
     btnTask.innerHTML = "In Process...";
-    // btnTask.style = "display = disable";
+    document.getElementById(`edit-${task.id}`).disabled = true;
+    document.getElementById(`delete-${task.id}`).disabled = true;
     if(task.status !== "active") {
         task.status = "active";
         if(!isTimerOn)
