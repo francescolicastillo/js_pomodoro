@@ -1,0 +1,64 @@
+:root {
+    --red: #f8333c;
+    --beige: #f7f7f7;
+    --foreground: #46494c;
+}
+
+body {
+    background-color: var(--beige);
+    color: black;
+    font-family: "Segoe UI", Roboto;
+    line-height: 1.5;
+    margin: 0;
+}
+
+main {
+    width: 700px;
+    margin: 50px auto 0;
+    border-radius: 20px;
+    box-shadow: 8px 8px 13px #cbcbc6, -8px -8px 13px #ffffff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+#header {
+    font-size: 3rem;
+}
+
+#timer {
+    margin: 0px;
+}
+
+#newTask {
+    padding:10px;
+    border: 1px solid #ccc;
+}
+
+#newTask:hover {
+    border: 1px solid #aaa;
+}
+
+#toDoList {
+    margin-top: 30px;
+}
+
+#toDoList > div {
+    margin: 0 20px;
+    display: grid;
+    grid-template-columns: 2fr 8fr 1fr 1fr;
+}
+
+#toDoList > div > span {
+    margin: 10px;
+    text-align: start;
+}
+
+button {
+    border: 1px solid #aaa;
+    border-radius: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 6px 0;
+} 

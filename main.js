@@ -1,21 +1,30 @@
 const task = document.querySelector('#newTask');
 const btnSubmit = document.querySelector('#btn-submit');
-const HTMLELementTasks = document.querySelector('#todoList');
+const HTMLELementTasks = document.querySelector('#toDoList');
 const timer = document.getElementById("timer");
 const submit = document.getElementById("submit");
 
-const arrayTasks = [];
+let arrayTasks = [];
 let isTimerOn = false;
 let intervalId;
 const stateTask = {
     id: 0,
-    title: null,
+    title: "",
     status: "",
+}
+
+const startsWithEmptySpace = () => {
+    if(task.value == " "){
+        setTimeout(() => {
+            task.value = "";
+        }, 20);
+    }
 }
 
 const addTask = () => {
     if(task.value.length !== 0){
         if(stateTask.id > 0) {
+            stateTask.title = task.value;
             saveChanges();
         } else {
             createNewTask();
@@ -25,17 +34,20 @@ const addTask = () => {
 }
 
 const saveChanges = () => {
-    console.log("enter");
-    console.log(arrayTasks);
     const newArray = arrayTasks.map((task) => {
-
         const t = (task.id === stateTask.id ? stateTask : task);
-        console.log(t);
         return t
     })
-    console.log(newArray);
+    arrayTasks = JSON.parse(JSON.stringify(newArray));
+    editTaskTitle(stateTask.id, stateTask.title);
     stateTask.id = 0;
+    stateTask.title = "";
     stateTask.status = "";
+}
+
+const editTaskTitle = (taskId, title) => {
+    const task = document.getElementById(taskId);
+    task.querySelector("span").innerText = title;
 }
 
 const createNewTask = () => {
@@ -47,21 +59,16 @@ const createNewTask = () => {
     arrayTasks.push(newTask);
     HTMLELementTasks.insertAdjacentHTML("afterBegin", 
                                         `<div id=${newTask.id}>
-                                            <button type="button" id="start-${newTask.id}" title="start">Start</button>${task.value} 
+                                            <button type="button" id="start-${newTask.id}" title="start">Start</button> 
+                                            <span>${task.value}</span>
                                             <button class="edit" type="button" id="edit-${newTask.id}" title="edit">edit</button>
                                             <button class="delete" type="button" id="dele-${newTask.id}" title="delete">Dele</button>
                                         </div>`);
     document.getElementById(`start-${newTask.id}`).addEventListener("click", startTask);
-    document.getElementById(`edit-${newTask.id}`).addEventListener("click", editTask);
+    document.getElementById(`edit-${newTask.id}`).addEventListener("click", editTaskStatus);
+    document.getElementById(`dele-${newTask.id}`).addEventListener("click", deleTask);
 }
 
-const startsWithEmptySpace = () => {
-    if(task.value == " "){
-        setTimeout(() => {
-            task.value = "";
-        }, 20);
-    }
-}
 
 const startTask = (btnId) => {
     const task = arrayTasks.find(t => t.id == btnId.target.id.split("-")[1]);
@@ -75,13 +82,21 @@ const startTask = (btnId) => {
     }
 }
 
-const editTask = (btnId) => {
+const editTaskStatus = (btnId) => {
     const taskToEdit = arrayTasks.find(t => t.id == btnId.target.id.split("-")[1]);
-    // if(taskToEdit.status !== "active"){
+    if(taskToEdit.status !== "active"){
         task.value = taskToEdit.title;
         stateTask.id = taskToEdit.id;
-        // stateTask.status = taskToEdit.status;
-    // }
+        stateTask.status = taskToEdit.status;
+    }
+}
+
+const deleTask = (taskID) => {
+    const taskToDelete = taskID.target.id.split("-")[1];
+    console.log(arrayTasks);
+    arrayTasks.map(task => (task.id !== taskToDelete ));
+    console.log(arrayTasks);
+    // in process
 }
 
 const startTimer = () => {
