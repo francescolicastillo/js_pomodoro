@@ -66,7 +66,7 @@ const createNewTask = () => {
                                         </div>`);
     document.getElementById(`start-${newTask.id}`).addEventListener("click", startTask);
     document.getElementById(`edit-${newTask.id}`).addEventListener("click", editTaskStatus);
-    document.getElementById(`dele-${newTask.id}`).addEventListener("click", deleTask);
+    document.getElementById(`delete-${newTask.id}`).addEventListener("click", deleteTask);
 }
 
 
@@ -91,7 +91,7 @@ const editTaskStatus = (btnId) => {
     }
 }
 
-const deleTask = (taskID) => {
+const deleteTask = (taskID) => {
     const taskToDelete = taskID.target.id.split("-")[1];
     console.log(arrayTasks);
     arrayTasks.map(task => (task.id !== taskToDelete ));
