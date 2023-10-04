@@ -74,9 +74,16 @@ const startTask = (btnId) => {
     const task = arrayTasks.find(t => t.id == btnId.target.id.split("-")[1]);
     const btnTask = document.getElementById(`start-${task.id}`);
     btnTask.innerHTML = "In Process...";
+    document.getElementById(`start-${task.id}`).classList.add("active");
     document.getElementById(`edit-${task.id}`).disabled = true;
+    document.getElementById(`edit-${task.id}`).classList.remove("pointer");
     document.getElementById(`delete-${task.id}`).disabled = true;
-    if(task.status !== "active") {
+    document.getElementById(`delete-${task.id}`).classList.remove("pointer");
+    if(task.status === "active") {
+        finishTask(task.id);
+        areTasksActived();
+    }
+    else if (task.status !== "active") { //This IF can be deleted
         task.status = "active";
         if(!isTimerOn)
             startTimer();
@@ -117,6 +124,24 @@ const startTimer = () => {
             setFinishedTasks();
         }
     }, 1000);
+}
+
+const finishTask = (id) => {
+    const btnTask = document.getElementById(`start-${id}`);
+    btnTask.innerHTML = "Finished";
+    arrayTasks.map(task => {
+        if(task.id === id)
+            task.status = "finished";
+    });
+}
+
+const areTasksActived = () => {
+    let result = arrayTasks.some(task => task.status === "active");
+    if(!result){
+        clearInterval(intervalId);
+        isTimerOn = false;
+        timer.innerHTML = "00:00";
+    }
 }
 
 const setFinishedTasks = () => {

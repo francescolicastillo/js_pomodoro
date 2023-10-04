@@ -37,9 +37,12 @@ main {
 }
 
 #toDoList > div {
-    margin: 0 20px;
+    margin: 0px 20px;
+    padding: 5px 0 0;
     display: grid;
     grid-template-columns: 2fr 8fr 1fr 1fr;
+    box-shadow: 8px 8px 13px #cbcbc6, -8px -8px 13px #ffffff;
+    border-radius: 5px;
 }
 
 #toDoList > div > span {
@@ -48,8 +51,8 @@ main {
 }
 
 button {
-    border: 1px solid #aaa;
-    border-radius: 0;
+    border: 1px solid #ccc;
+    border-radius:5px;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
@@ -74,4 +77,19 @@ button {
 
 .edit:hover:enabled {
     background-color: rgb(63, 176, 252);
+}
+
+.delete {
+    background-color: rgb(255, 116, 116);
+}
+
+.delete:hover:enabled {
+    background-color: red;
+}
+
+.active {
+    background-color: rgb(252, 252, 120);
+}
+.active:hover {
+    background-color: yellow;
 }
