@@ -101,10 +101,9 @@ const editTaskStatus = (btnId) => {
 
 const deleteTask = (taskID) => {
     const taskToDelete = taskID.target.id.split("-")[1];
-    console.log(arrayTasks);
-    arrayTasks.map(task => (task.id !== taskToDelete ));
-    console.log(arrayTasks);
-    // in process
+    arrayTasks = arrayTasks.filter((task) => task.id != taskToDelete );
+    const elementDelete = document.getElementById(taskToDelete);
+    elementDelete.remove();
 }
 
 const startTimer = () => {
