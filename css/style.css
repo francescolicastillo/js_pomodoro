@@ -65,6 +65,7 @@ button {
 
 .start {
     background-color: rgb(112, 211, 112);
+    text-transform: capitalize;
 }
 
 .start:hover {
@@ -73,6 +74,7 @@ button {
 
 .edit {
     background-color: rgb(38, 224, 248);
+    text-transform: capitalize;
 }
 
 .edit:hover:enabled {
@@ -81,6 +83,7 @@ button {
 
 .delete {
     background-color: rgb(255, 116, 116);
+    text-transform: capitalize;
 }
 
 .delete:hover:enabled {
