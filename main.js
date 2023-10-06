@@ -83,7 +83,7 @@ const startTask = (btnId) => {
         finishTask(task.id);
         areTasksActived();
     }
-    else if (task.status !== "active") { //This IF can be deleted
+    else if (task.status !== "active") {
         task.status = "active";
         if(!isTimerOn)
             startTimer();
@@ -128,6 +128,10 @@ const startTimer = () => {
 const finishTask = (id) => {
     const btnTask = document.getElementById(`start-${id}`);
     btnTask.innerHTML = "Finished";
+    document.getElementById(`edit-${id}`).disabled = false;
+    document.getElementById(`edit-${id}`).classList.add("pointer");
+    document.getElementById(`delete-${id}`).disabled = false;
+    document.getElementById(`delete-${id}`).classList.add("pointer");
     arrayTasks.map(task => {
         if(task.id === id)
             task.status = "finished";
