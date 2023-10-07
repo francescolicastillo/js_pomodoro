@@ -69,7 +69,6 @@ const createNewTask = () => {
     document.getElementById(`delete-${newTask.id}`).addEventListener("click", deleteTask);
 }
 
-
 const startTask = (btnId) => {
     const task = arrayTasks.find(t => t.id == btnId.target.id.split("-")[1]);
     const btnTask = document.getElementById(`start-${task.id}`);
@@ -104,6 +103,8 @@ const deleteTask = (taskID) => {
     arrayTasks = arrayTasks.filter((task) => task.id != taskToDelete );
     const elementDelete = document.getElementById(taskToDelete);
     elementDelete.remove();
+    task.value = "";
+    stateTask.id = 0;
 }
 
 const startTimer = () => {
