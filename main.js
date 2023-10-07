@@ -74,6 +74,7 @@ const startTask = (btnId) => {
     const btnTask = document.getElementById(`start-${task.id}`);
     btnTask.innerHTML = "In Process...";
     document.getElementById(`start-${task.id}`).classList.add("active");
+    document.getElementById(`start-${task.id}`).classList.remove("start");
     document.getElementById(`edit-${task.id}`).disabled = true;
     document.getElementById(`edit-${task.id}`).classList.remove("pointer");
     document.getElementById(`delete-${task.id}`).disabled = true;
@@ -129,6 +130,8 @@ const startTimer = () => {
 const finishTask = (id) => {
     const btnTask = document.getElementById(`start-${id}`);
     btnTask.innerHTML = "Finished";
+    btnTask.classList.remove("active")
+    btnTask.classList.add("finished")
     document.getElementById(`edit-${id}`).disabled = false;
     document.getElementById(`edit-${id}`).classList.add("pointer");
     document.getElementById(`delete-${id}`).disabled = false;
@@ -153,10 +156,11 @@ const setFinishedTasks = () => {
         if(task.status === "active") {
             const btnTask = document.getElementById(`start-${task.id}`);
             btnTask.innerHTML = "Finished";
+            btnTask.classList.remove("active")
+            btnTask.classList.add("finished")
             task.status = "finished";
         }
     })
-
 }
 
 const handleSubmit = (e) => {

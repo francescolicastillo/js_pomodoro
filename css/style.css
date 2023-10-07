@@ -96,3 +96,9 @@ button {
 .active:hover {
     background-color: yellow;
 }
+
+
+.finished:hover {
+    background-color: rgb(209, 209, 209);
+
+}
