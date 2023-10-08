@@ -59,10 +59,10 @@ const createNewTask = () => {
     arrayTasks.push(newTask);
     HTMLELementTasks.insertAdjacentHTML("afterBegin", 
                                         `<div id=${newTask.id}>
-                                            <button type="button" id="start-${newTask.id}" class="start pointer" title="start">Start</button> 
+                                            <button type="button" id="start-${newTask.id}" class="start pointer" title="Start">Start</button> 
                                             <span>${task.value}</span>
                                             <button type="button" id="edit-${newTask.id}" class="edit pointer" title="Edit">edit</button>
-                                            <button type="button" id="delete-${newTask.id}" class="delete pointer" title="Delete">Dele</button>
+                                            <button type="button" id="delete-${newTask.id}" class="delete pointer" title="Delete">Delete</button>
                                         </div>`);
     document.getElementById(`start-${newTask.id}`).addEventListener("click", startTask);
     document.getElementById(`edit-${newTask.id}`).addEventListener("click", editTaskStatus);
@@ -73,6 +73,7 @@ const startTask = (btnId) => {
     const task = arrayTasks.find(t => t.id == btnId.target.id.split("-")[1]);
     const btnTask = document.getElementById(`start-${task.id}`);
     btnTask.innerHTML = "In Process...";
+    btnTask.setAttribute('title',"Stop task");
     document.getElementById(`start-${task.id}`).classList.add("active");
     document.getElementById(`start-${task.id}`).classList.remove("start");
     document.getElementById(`edit-${task.id}`).disabled = true;
@@ -130,8 +131,9 @@ const startTimer = () => {
 const finishTask = (id) => {
     const btnTask = document.getElementById(`start-${id}`);
     btnTask.innerHTML = "Finished";
-    btnTask.classList.remove("active")
-    btnTask.classList.add("finished")
+    btnTask.classList.remove("active");
+    btnTask.classList.add("finished");
+    btnTask.setAttribute('title',"Start again");
     document.getElementById(`edit-${id}`).disabled = false;
     document.getElementById(`edit-${id}`).classList.add("pointer");
     document.getElementById(`delete-${id}`).disabled = false;
@@ -156,6 +158,7 @@ const setFinishedTasks = () => {
         if(task.status === "active") {
             const btnTask = document.getElementById(`start-${task.id}`);
             btnTask.innerHTML = "Finished";
+            btnTask.setAttribute('title',"Start again");
             btnTask.classList.remove("active")
             btnTask.classList.add("finished")
             task.status = "finished";
