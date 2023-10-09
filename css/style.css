@@ -59,6 +59,18 @@ button {
     padding: 6px 0;
 } 
 
+#btn-submit {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: .05px solid rgb(56, 161, 126);
+    background-color: aquamarine;
+}
+
+#btn-submit:hover {
+    background-color: rgb(44, 247, 179);
+}
+
 .pointer {
     cursor: pointer;
 }

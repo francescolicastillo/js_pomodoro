@@ -62,7 +62,7 @@ const createNewTask = () => {
                                             <button type="button" id="start-${newTask.id}" class="start pointer" title="Start">Start</button> 
                                             <span>${task.value}</span>
                                             <button type="button" id="edit-${newTask.id}" class="edit pointer" title="Edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button type="button" id="delete-${newTask.id}" class="delete pointer" title="Delete"><i class="fa-solid fa-trash" style="color: #000000;"></i></button>
+                                            <button type="button" id="delete-${newTask.id}" class="delete pointer" title="Delete"><i class="fa-solid fa-trash"></i></button>
                                         </div>`);
     document.getElementById(`start-${newTask.id}`).addEventListener("click", startTask);
     document.getElementById(`edit-${newTask.id}`).addEventListener("click", editTaskStatus);
